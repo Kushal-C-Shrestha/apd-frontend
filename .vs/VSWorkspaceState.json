@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\assets",
+    "\\src\\components",
+    "\\src\\components\\Layout",
+    "\\src\\hooks",
+    "\\src\\pages",
+    "\\src\\pages\\Dashboard",
+    "\\src\\routes",
+    "\\src\\services"
+  ],
+  "SelectedNode": "\\index.html",
+  "PreviewInSolutionExplorer": false
+}

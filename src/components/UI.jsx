@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+// ─── Icons ────────────────────────────────────────────────────────────────────
 export const Icon = ({ name, size = 16 }) => {
     const paths = {
         parts:    "M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z",
@@ -21,6 +22,7 @@ export const Icon = ({ name, size = 16 }) => {
     );
 };
 
+// ─── Toast ────────────────────────────────────────────────────────────────────
 export function Toasts({ toasts }) {
     return (
         <div className="toast-wrap">
@@ -34,6 +36,7 @@ export function Toasts({ toasts }) {
     );
 }
 
+// ─── Modal ────────────────────────────────────────────────────────────────────
 export function Modal({ title, onClose, onSubmit, submitting, children, submitLabel = "Save" }) {
     return (
         <div className="overlay" onClick={onClose}>
@@ -56,6 +59,7 @@ export function Modal({ title, onClose, onSubmit, submitting, children, submitLa
     );
 }
 
+// ─── Confirm Delete ───────────────────────────────────────────────────────────
 export function ConfirmDelete({ label, onConfirm, onClose }) {
     const [busy, setBusy] = useState(false);
     return (

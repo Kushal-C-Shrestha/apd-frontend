@@ -8,12 +8,23 @@ import VendorsPage from '../pages/Vendors/Vendors'
 import { Toasts } from '../components/UI'
 import { useToast } from '../hooks/useToast'
 
+function toArray(data) {
+    if (!data) return []
+    if (Array.isArray(data)) return data
+    if (Array.isArray(data.$values)) return data.$values
+    if (Array.isArray(data.value)) return data.value
+    if (Array.isArray(data.data)) return data.data
+    // Single object returned instead of array
+    if (typeof data === 'object') return [data]
+    return []
+}
+
 export default function AppWithState() {
-    const [parts, setParts]       = useState([])
-    const [vendors, setVendors]   = useState([])
+    const [parts, setParts]         = useState([])
+    const [vendors, setVendors]     = useState([])
     const [purchases, setPurchases] = useState([])
-    const [loading, setLoading]   = useState(true)
-    const { toasts, toast }       = useToast()
+    const [loading, setLoading]     = useState(true)
+    const { toasts, toast }         = useToast()
 
     useEffect(() => {
         async function loadAll() {
@@ -24,37 +35,36 @@ export default function AppWithState() {
                     api.get('/vendors'),
                     api.get('/parts/purchases'),
                 ])
-                setParts(partsRes.data ?? [])
-                setVendors(vendorsRes.data ?? [])
-                setPurchases(purchasesRes.data ?? [])
+                setParts(toArray(partsRes.data))
+                setVendors(toArray(vendorsRes.data))
+                setPurchases(toArray(purchasesRes.data))
             } catch (err) {
                 console.warn('API unavailable, using demo data:', err.message)
-                // Demo data matching backend PascalCase field names
                 setParts([
-                    { PartId: 1, Name: "Brake Pad",        Description: "Front disc brake pad",          UnitPrice: 1200, StockQuantity: 45,  CreatedAt: new Date().toISOString() },
-                    { PartId: 2, Name: "Engine Oil Filter", Description: "Compatible with Honda & Toyota", UnitPrice: 350,  StockQuantity: 8,   CreatedAt: new Date().toISOString() },
-                    { PartId: 3, Name: "Spark Plug",        Description: "NGK standard",                  UnitPrice: 180,  StockQuantity: 120, CreatedAt: new Date().toISOString() },
-                    { PartId: 4, Name: "Air Filter",        Description: "Universal fit",                 UnitPrice: 450,  StockQuantity: 5,   CreatedAt: new Date().toISOString() },
-                    { PartId: 5, Name: "Clutch Plate",      Description: "Heavy duty",                    UnitPrice: 3200, StockQuantity: 22,  CreatedAt: new Date().toISOString() },
+                    { partId: 1, name: "Brake Pad",         description: "Front disc brake pad",           unitPrice: 1200, stockQuantity: 45,  createdAt: new Date().toISOString() },
+                    { partId: 2, name: "Engine Oil Filter",  description: "Compatible with Honda & Toyota", unitPrice: 350,  stockQuantity: 8,   createdAt: new Date().toISOString() },
+                    { partId: 3, name: "Spark Plug",         description: "NGK standard",                  unitPrice: 180,  stockQuantity: 120, createdAt: new Date().toISOString() },
+                    { partId: 4, name: "Air Filter",         description: "Universal fit",                 unitPrice: 450,  stockQuantity: 5,   createdAt: new Date().toISOString() },
+                    { partId: 5, name: "Clutch Plate",       description: "Heavy duty",                    unitPrice: 3200, stockQuantity: 22,  createdAt: new Date().toISOString() },
                 ])
                 setVendors([
-                    { VendorId: 1, Name: "Nepal Auto Supplies",  Phone: "9841123456", Email: "sales@nepalauto.com",    Address: "Kalanki, Kathmandu",   CreatedAt: new Date().toISOString(), TotalPurchases: 12 },
-                    { VendorId: 2, Name: "Himalaya Parts Co.",   Phone: "9851234567", Email: "info@himalayaparts.com", Address: "Baneshwor, Kathmandu", CreatedAt: new Date().toISOString(), TotalPurchases: 7  },
-                    { VendorId: 3, Name: "Pokhara Motors Ltd.",  Phone: "9806543210", Email: "",                       Address: "Lakeside, Pokhara",    CreatedAt: new Date().toISOString(), TotalPurchases: 3  },
+                    { vendorId: 1, name: "Nepal Auto Supplies", phone: "9841123456", email: "sales@nepalauto.com",    address: "Kalanki, Kathmandu",   createdAt: new Date().toISOString(), totalPurchases: 12 },
+                    { vendorId: 2, name: "Himalaya Parts Co.",  phone: "9851234567", email: "info@himalayaparts.com", address: "Baneshwor, Kathmandu", createdAt: new Date().toISOString(), totalPurchases: 7  },
+                    { vendorId: 3, name: "Pokhara Motors Ltd.", phone: "9806543210", email: "",                       address: "Lakeside, Pokhara",    createdAt: new Date().toISOString(), totalPurchases: 3  },
                 ])
                 setPurchases([
                     {
-                        PurchaseId: 1, VendorId: 1, VendorName: "Nepal Auto Supplies", TotalAmount: 54000, CreatedAt: new Date().toISOString(),
-                        Items: [
-                            { PurchaseItemId: 1, PartId: 1, PartName: "Brake Pad",         Quantity: 30,  UnitCost: 1200, Subtotal: 36000 },
-                            { PurchaseItemId: 2, PartId: 3, PartName: "Spark Plug",         Quantity: 100, UnitCost: 180,  Subtotal: 18000 },
+                        purchaseId: 1, vendorId: 1, vendorName: "Nepal Auto Supplies", totalAmount: 54000, createdAt: new Date().toISOString(),
+                        items: [
+                            { purchaseItemId: 1, partId: 1, partName: "Brake Pad",         quantity: 30,  unitCost: 1200, subtotal: 36000 },
+                            { purchaseItemId: 2, partId: 3, partName: "Spark Plug",         quantity: 100, unitCost: 180,  subtotal: 18000 },
                         ]
                     },
                     {
-                        PurchaseId: 2, VendorId: 2, VendorName: "Himalaya Parts Co.", TotalAmount: 16000, CreatedAt: new Date().toISOString(),
-                        Items: [
-                            { PurchaseItemId: 3, PartId: 2, PartName: "Engine Oil Filter", Quantity: 20, UnitCost: 350, Subtotal: 7000 },
-                            { PurchaseItemId: 4, PartId: 4, PartName: "Air Filter",         Quantity: 20, UnitCost: 450, Subtotal: 9000 },
+                        purchaseId: 2, vendorId: 2, vendorName: "Himalaya Parts Co.", totalAmount: 16000, createdAt: new Date().toISOString(),
+                        items: [
+                            { purchaseItemId: 3, partId: 2, partName: "Engine Oil Filter", quantity: 20, unitCost: 350, subtotal: 7000 },
+                            { purchaseItemId: 4, partId: 4, partName: "Air Filter",         quantity: 20, unitCost: 450, subtotal: 9000 },
                         ]
                     },
                 ])
@@ -64,7 +74,16 @@ export default function AppWithState() {
         loadAll()
     }, [])
 
-    const sharedProps = { parts, setParts, vendors, setVendors, purchases, setPurchases, toast }
+    const safeSetParts     = (val) => setParts(prev     => Array.isArray(val) ? val : typeof val === 'function' ? val(prev) : toArray(val))
+    const safeSetVendors   = (val) => setVendors(prev   => Array.isArray(val) ? val : typeof val === 'function' ? val(prev) : toArray(val))
+    const safeSetPurchases = (val) => setPurchases(prev => Array.isArray(val) ? val : typeof val === 'function' ? val(prev) : toArray(val))
+
+    const sharedProps = {
+        parts,     setParts:     safeSetParts,
+        vendors,   setVendors:   safeSetVendors,
+        purchases, setPurchases: safeSetPurchases,
+        toast,
+    }
 
     return (
         <>
@@ -75,7 +94,7 @@ export default function AppWithState() {
                     </div>
                 ) : (
                     <Routes>
-                        <Route path="/"        element={<Dashboard  parts={parts} vendors={vendors} purchases={purchases} />} />
+                        <Route path="/"        element={<Dashboard parts={parts} vendors={vendors} purchases={purchases} />} />
                         <Route path="/parts"   element={<PartsPage   {...sharedProps} />} />
                         <Route path="/vendors" element={<VendorsPage {...sharedProps} />} />
                     </Routes>
