@@ -1,26 +1,54 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+
 import DashboardLayout from '../layout/DashboardLayout'
+
 import {
-    Login, Register,
-    AdminDashboard, AdminStaffs, AdminParts, AdminAppointments, AdminVendors, AdminReviews, AdminNotifications,
-    StaffDashboard, StaffCustomers, StaffParts, StaffSales,
-    CustomerAppointments, CustomerReviews, CustomerPurchases, CustomerVehicles, CustomerProfile, CustomerParts,
+    Login,
+    Register,
+
+    AdminDashboard,
+    AdminStaffs,
+    AdminParts,
+    AdminAppointments,
+    AdminVendors,
+    AdminReviews,
+    AdminNotifications,
+
+    StaffDashboard,
+    StaffCustomers,
+    StaffParts,
+    StaffSales,
+
+    CustomerAppointments,
+    CustomerReviews,
+    CustomerPurchases,
+    CustomerVehicles,
+    CustomerProfile,
+    CustomerParts,
 } from '../pages'
+
 import CustomerRegister from '../pages/Staff/CustomerRegister'
+
+// Inventory & vendor management app
+import AppWithState from './AppWithState'
 
 const AppRoutes = () => {
     return (
         <Router>
             <Routes>
+                {/* Auth */}
                 <Route path="/" element={<Navigate to="/login" replace />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
 
+                {/* Inventory & Vendor Management */}
+                <Route path="/inventory/*" element={<AppWithState />} />
+
                 <Route element={<DashboardLayout />}>
+
                     {/* Admin Routes */}
                     <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
-
                     <Route path="/admin/dashboard" element={<AdminDashboard />} />
                     <Route path="/admin/staffs" element={<AdminStaffs />} />
                     <Route path="/admin/parts" element={<AdminParts />} />
@@ -46,7 +74,6 @@ const AppRoutes = () => {
                     <Route path="/customer/profile" element={<CustomerProfile />} />
                     <Route path="/customer/parts" element={<CustomerParts />} />
                 </Route>
-
             </Routes>
         </Router>
     )
