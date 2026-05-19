@@ -1,18 +1,80 @@
 import React from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Layout from '../components/Layout/Layout'
-import DashboardPage from '../pages/Dashboard/Dashboard'
-import PartsPage from '../pages/Parts/Parts'
-import VendorsPage from '../pages/Vendors/Vendors'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 
-// AppRoutes wraps everything in the shared layout and passes shared state via context/props
-// The state is lifted to App.jsx which is the single source of truth
+import DashboardLayout from '../layout/DashboardLayout'
+
+import {
+    Login,
+    Register,
+
+    AdminDashboard,
+    AdminStaffs,
+    AdminParts,
+    AdminAppointments,
+    AdminVendors,
+    AdminReviews,
+    AdminNotifications,
+
+    StaffDashboard,
+    StaffCustomers,
+    StaffParts,
+    StaffSales,
+
+    CustomerAppointments,
+    CustomerReviews,
+    CustomerPurchases,
+    CustomerVehicles,
+    CustomerProfile,
+    CustomerParts,
+} from '../pages'
+
+import CustomerRegister from '../pages/Staff/CustomerRegister'
+
+// Inventory & vendor management app
 import AppWithState from './AppWithState'
 
 const AppRoutes = () => {
     return (
         <Router>
-            <AppWithState />
+            <Routes>
+                {/* Auth */}
+                <Route path="/" element={<Navigate to="/login" replace />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+
+                {/* Inventory & Vendor Management */}
+                <Route path="/inventory/*" element={<AppWithState />} />
+
+                <Route element={<DashboardLayout />}>
+
+                    {/* Admin Routes */}
+                    <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
+                    <Route path="/admin/dashboard" element={<AdminDashboard />} />
+                    <Route path="/admin/staffs" element={<AdminStaffs />} />
+                    <Route path="/admin/parts" element={<AdminParts />} />
+                    <Route path="/admin/appointments" element={<AdminAppointments />} />
+                    <Route path="/admin/vendors" element={<AdminVendors />} />
+                    <Route path="/admin/reviews" element={<AdminReviews />} />
+                    <Route path="/admin/notifications" element={<AdminNotifications />} />
+
+                    {/* Staff Routes */}
+                    <Route path="/staff" element={<Navigate to="/staff/dashboard" replace />} />
+                    <Route path="/staff/dashboard" element={<StaffDashboard />} />
+                    <Route path="/staff/customers" element={<StaffCustomers />} />
+                    <Route path="/staff/parts" element={<StaffParts />} />
+                    <Route path="/staff/sales" element={<StaffSales />} />
+                    <Route path="/staff/register-customer" element={<CustomerRegister />} />
+
+                    {/* Customer Routes */}
+                    <Route path="/customer" element={<Navigate to="/customer/appointments" replace />} />
+                    <Route path="/customer/appointments" element={<CustomerAppointments />} />
+                    <Route path="/customer/reviews" element={<CustomerReviews />} />
+                    <Route path="/customer/purchases" element={<CustomerPurchases />} />
+                    <Route path="/customer/vehicles" element={<CustomerVehicles />} />
+                    <Route path="/customer/profile" element={<CustomerProfile />} />
+                    <Route path="/customer/parts" element={<CustomerParts />} />
+                </Route>
+            </Routes>
         </Router>
     )
 }
