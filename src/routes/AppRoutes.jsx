@@ -7,6 +7,7 @@ import {
     StaffDashboard, StaffCustomers, StaffParts, StaffSales,
     CustomerAppointments, CustomerReviews, CustomerPurchases, CustomerVehicles, CustomerProfile, CustomerParts,
 } from '../pages'
+import CustomerRegister from '../pages/Staff/CustomerRegister'
 
 const AppRoutes = () => {
     return (
@@ -34,6 +35,7 @@ const AppRoutes = () => {
                     <Route path="/staff/customers" element={<StaffCustomers />} />
                     <Route path="/staff/parts" element={<StaffParts />} />
                     <Route path="/staff/sales" element={<StaffSales />} />
+                    <Route path="/staff/register-customer" element={<CustomerRegister />} />
 
                     {/* Customer Routes */}
                     <Route path="/customer" element={<Navigate to="/customer/appointments" replace />} />
@@ -44,6 +46,7 @@ const AppRoutes = () => {
                     <Route path="/customer/profile" element={<CustomerProfile />} />
                     <Route path="/customer/parts" element={<CustomerParts />} />
                 </Route>
+
             </Routes>
         </Router>
     )
