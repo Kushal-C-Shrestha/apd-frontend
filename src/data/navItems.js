@@ -49,7 +49,6 @@ const NAV_GROUPS = {
             items: [
                 { label: 'Parts', path: '/staff/parts', icon: Wrench },
                 { label: 'Sales', path: '/staff/sales', icon: Receipt },
-                { label: 'Notifications', path: '/staff/notifications', icon: Bell },
             ],
         },
     ],

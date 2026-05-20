@@ -26,7 +26,7 @@ const Navbar = ({ role = 'Admin', collapsed = false }) => {
             </div>
 
             {/* Nav Groups */}
-            <nav className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden px-2 py-3 gap-4 no-scrollbar">
+            <nav className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden px-2 py-3 gap-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 {groups.map(({ group, items }) => (
                     <div key={group} className="flex flex-col">
                         {/* Group label and divider container keeps spacing consistent */}

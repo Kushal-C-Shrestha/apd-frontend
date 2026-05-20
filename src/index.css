@@ -1,24 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/*
+  All custom base/reset styles MUST be in @layer base.
+  In Tailwind v4, utilities live in @layer utilities which beats @layer base.
+  Un-layered CSS beats ALL layers, so a bare "* { padding: 0 }" would
+  override every p-*, gap-*, m-* utility class — hence this wrapper.
+*/
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #F4F8FD;
+    color: #0C1A2E;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
 }
 
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: #F4F8FD;
-  color: #0C1A2E;
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* ── Layout ─────────────────────────────────────────────────────────────────── */
+/* ── Legacy layout classes (used by old team's components) ─────────────────── */
 .layout { display: flex; min-height: 100vh; }
 
-/* ── Sidebar ────────────────────────────────────────────────────────────────── */
 .sidebar {
   width: 220px;
   background: #042C53;
@@ -26,110 +33,22 @@ body {
   flex-direction: column;
   flex-shrink: 0;
   position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
+  top: 0; left: 0; bottom: 0;
 }
 
-.sidebar-logo {
-  padding: 28px 24px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-
-.logo-mark {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.logo-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  background: #378ADD;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.logo-text {
-  font-size: 16px;
-  font-weight: 600;
-  color: #fff;
-  letter-spacing: -0.3px;
-}
-
-.logo-sub {
-  font-size: 11px;
-  color: rgba(255,255,255,0.4);
-  margin-top: 2px;
-}
-
-.sidebar-nav {
-  padding: 16px 12px;
-  flex: 1;
-}
-
-.nav-label {
-  font-size: 10px;
-  font-weight: 600;
-  color: rgba(255,255,255,0.3);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  padding: 0 12px;
-  margin: 16px 0 6px;
-}
-
-.nav-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 9px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.55);
-  transition: all 0.15s;
-  border: none;
-  background: none;
-  width: 100%;
-  text-align: left;
-  text-decoration: none;
-}
-
-.nav-item:hover {
-  background: rgba(255,255,255,0.07);
-  color: rgba(255,255,255,0.85);
-}
-
-.nav-item.active {
-  background: #185FA5;
-  color: #fff;
-}
-
-.nav-icon {
-  font-size: 16px;
-  width: 20px;
-  text-align: center;
-}
-
-/* ── Main ───────────────────────────────────────────────────────────────────── */
-.main {
-  margin-left: 220px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-/* keep rest of Feature-Inventory_and_vendor_management styles unchanged */
-
-/* ── Utils ──────────────────────────────────────────────────────────────────── */
-.mono {
-  font-family: 'DM Mono', monospace;
-  font-size: 13px;
-}
-
+.sidebar-logo { padding: 28px 24px 20px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.logo-mark { display: flex; align-items: center; gap: 10px; }
+.logo-icon { width: 32px; height: 32px; border-radius: 8px; background: #378ADD; display: flex; align-items: center; justify-content: center; }
+.logo-text { font-size: 16px; font-weight: 600; color: #fff; letter-spacing: -0.3px; }
+.logo-sub { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+.sidebar-nav { padding: 16px 12px; flex: 1; }
+.nav-label { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.3); letter-spacing: 1px; text-transform: uppercase; padding: 0 12px; margin: 16px 0 6px; }
+.nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.55); transition: all 0.15s; border: none; background: none; width: 100%; text-align: left; text-decoration: none; }
+.nav-item:hover { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.85); }
+.nav-item.active { background: #185FA5; color: #fff; }
+.nav-icon { font-size: 16px; width: 20px; text-align: center; }
+.main { margin-left: 220px; flex: 1; display: flex; flex-direction: column; }
+.mono { font-family: 'DM Mono', monospace; font-size: 13px; }
 .text-muted { color: #7A93B0; }
 .flex { display: flex; }
 .gap-2 { gap: 8px; }

@@ -1,4 +1,8 @@
-export { default as StaffDashboard } from './Dashboard/Dashboard.jsx'
-export { default as StaffCustomers } from './Customers/Customers.jsx'
-export { default as StaffParts } from './Parts/Parts.jsx'
-export { default as StaffSales } from './Sales/Sales.jsx'
+export { default as StaffDashboard } from './Dashboard';
+export { default as StaffCustomers } from './Customers';
+
+export { default as StaffParts } from './Parts';
+export { default as StaffSales } from './Sales';
+export { default as StaffVehicles } from './Vehicles';
+export { default as StaffReports } from './Reports';
+export { default as StaffNotifications } from './Notifications';

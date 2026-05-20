@@ -1,23 +1,25 @@
-export { default as Home } from './Home/Home'
-export { default as Dashboard } from './Dashboard/Dashboard'
-export { default as PartsPage } from './Parts/Parts'
-export { default as VendorsPage } from './Vendors/Vendors'
-
 export {
   AdminDashboard,
+  AdminPurchases,
   AdminStaffs,
   AdminParts,
   AdminVendors,
   AdminAppointments,
   AdminReviews,
-  AdminNotifications
+  AdminNotifications,
+  AdminReports,
+  AdminRequests, 
+  AdminSales
 } from './Admin/index.js'
 
 export {
   StaffDashboard,
   StaffCustomers,
   StaffParts,
-  StaffSales
+  StaffSales, 
+  StaffReports, 
+  StaffVehicles,
+  StaffNotifications
 } from './Staff/index.js'
 
 export {
@@ -26,8 +28,10 @@ export {
   CustomerPurchases,
   CustomerVehicles,
   CustomerProfile,
-  CustomerParts
+  CustomerParts,
+  CustomerNotifications,
 } from './Customer/index.js'
 
-export { default as Login } from './Login/Login.jsx'
-export { default as Register } from './Register/Register.jsx'
+export { default as Login } from './Login/'
+export { default as Register } from './Register/'
+export { default as ForgotPassword } from './ForgotPassword/'
