@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+ï»¿import { useEffect, useState } from 'react'
 import { Loader2, Plus, Pencil, Trash2, X, AlertTriangle, Package } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { getAllParts, createPart, updatePart, deletePart } from '@/services/partService'
@@ -148,7 +148,7 @@ const Parts = () => {
                                         <span>{p.name}</span>
                                     </div>
                                 </td>
-                                <td className="px-5 py-3.5 text-gray-500 text-xs truncate max-w-[200px]">{p.description || '—'}</td>
+                                <td className="px-5 py-3.5 text-gray-500 text-xs truncate max-w-[200px]">{p.description || 'ï¿½'}</td>
                                 <td className="px-5 py-3.5 text-gray-500 font-mono text-xs">Rs. {Number(p.costPrice || 0).toLocaleString()}</td>
                                 <td className="px-5 py-3.5 text-gray-800 font-bold font-mono text-xs">Rs. {Number(p.unitPrice).toLocaleString()}</td>
                                 <td className="px-5 py-3.5">

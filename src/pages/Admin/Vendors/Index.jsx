@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+ï»¿import { useEffect, useState } from 'react'
 import { Loader2, Plus, Pencil, Trash2, X, AlertTriangle, Briefcase, Phone, Mail, MapPin, Calendar, Receipt, ChevronRight } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { useForm } from 'react-hook-form'
@@ -201,10 +201,10 @@ const Vendors = () => {
                                 className="border-b border-gray-50 hover:bg-slate-50/60 transition-colors cursor-pointer group"
                             >
                                 <td className="px-5 py-3.5 font-bold text-gray-800 group-hover:text-blue-600 transition-colors">{v.name}</td>
-                                <td className="px-5 py-3.5 text-gray-500">{v.contactPerson || '—'}</td>
+                                <td className="px-5 py-3.5 text-gray-500">{v.contactPerson || 'ï¿½'}</td>
                                 <td className="px-5 py-3.5 text-gray-500 font-mono text-xs">{v.email}</td>
                                 <td className="px-5 py-3.5 text-gray-500">{v.phone}</td>
-                                <td className="px-5 py-3.5 text-gray-400 truncate max-w-[150px]">{v.address || '—'}</td>
+                                <td className="px-5 py-3.5 text-gray-400 truncate max-w-[150px]">{v.address || 'ï¿½'}</td>
                                 <td className="px-5 py-3.5" onClick={e => e.stopPropagation()}>
                                     <div className="flex items-center gap-2 justify-end">
                                         <button onClick={(e) => openEdit(v, e)} className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all" title="Edit Vendor"><Pencil size={13} /></button>
@@ -326,7 +326,7 @@ const Vendors = () => {
                                         <Briefcase className="text-gray-400 shrink-0 mt-0.5" size={14} />
                                         <div>
                                             <p className="text-[10px] text-gray-400 font-bold uppercase leading-none">Contact Person</p>
-                                            <p className="text-xs font-semibold text-gray-700 mt-1">{selectedVendor.contactPerson || '—'}</p>
+                                            <p className="text-xs font-semibold text-gray-700 mt-1">{selectedVendor.contactPerson || 'ï¿½'}</p>
                                         </div>
                                     </div>
 
@@ -350,7 +350,7 @@ const Vendors = () => {
                                         <MapPin className="text-gray-400 shrink-0 mt-0.5" size={14} />
                                         <div>
                                             <p className="text-[10px] text-gray-400 font-bold uppercase leading-none">Business Address</p>
-                                            <p className="text-xs font-semibold text-gray-700 mt-1 leading-relaxed">{selectedVendor.address || '—'}</p>
+                                            <p className="text-xs font-semibold text-gray-700 mt-1 leading-relaxed">{selectedVendor.address || 'ï¿½'}</p>
                                         </div>
                                     </div>
 
@@ -412,7 +412,7 @@ const Vendors = () => {
                                                                 <span>{item.partName}</span>
                                                             </div>
                                                             <span className="font-semibold text-gray-800">
-                                                                {item.quantity} × Rs.{item.unitCost}
+                                                                {item.quantity} ï¿½ Rs.{item.unitCost}
                                                             </span>
                                                         </div>
                                                     ))}
